@@ -1,1 +1,44 @@
-<p>dashboard works!</p>
+<div class="container ">
+    <form (submit)="createPost()" class="container">
+        <div class="letter">
+          <span class="blog-letter" style="--delay: 1">B</span>
+          <span class="blog-letter" style="--delay: 2">L</span>
+          <span class="blog-letter" style="--delay: 3">O</span>
+          <span class="blog-letter" style="--delay: 4">G</span>
+        </div>
+        <h2 style="text-align: center;color: rgb(119, 200, 200);">Create Post</h2>
+        <div class="mb-3">
+            <label>Category, Title and Photo:</label>
+      <select [(ngModel)]="category" class="form-control mb-3" name="category" id="category" >   
+        <option value="World" selected>World</option>
+          <option value="Technology">Technology</option>
+          <option value="Design">Design</option>
+          <option value="Culture">Culture</option>
+          <option value="Business">Business</option>
+          <option value="Opinion">Opinion</option>
+          <option value="Science">Science</option>
+          <option value="Health">Health</option>
+          <option value="Style">Style</option>
+          <option value="Travel">Travel</option>
+      </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Title:</label>
+          <input type="text" class="form-control"
+          [(ngModel)]="title" name="title"
+          placeholder="Title..." />
+          <div class="mt-3">
+          <quill-editor [(ngModel)]="photo" name="photo" placeholder="photo"></quill-editor>
+          </div>
+          <div class="mt-3">
+          <p>  <label for="">Information:</label> </p>
+          <quill-editor [(ngModel)]="text" name="text" placeholder="text"></quill-editor>
+          </div>
+        </div>
+        
+      
+       
+        <button type="submit" class="btn btn-primary w-100">Create</button>
+      </form>
+</div>
+

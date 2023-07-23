@@ -1,24 +1,26 @@
-<div
-  class="d-flex justify-content-between flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow"
+<header
+  class="animated-gradient d-flex justify-content-between flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow"
 >
   <img src="https://img.freepik.com/premium-vector/word-blog-blogging-concept-illustration-web-blogger_186380-3328.jpg" class="img" alt="...">
   <nav class="my-2 my-md-0 mr-md-3">
     <a
-      class="p-2 text-dark text-decoration-none"
+      class="p-2 text-light text-decoration-none"
       [routerLink]="['/']"
       routerLinkActive="activeMenu"
       [routerLinkActiveOptions]="{exact: true}"
       >Home</a
     >
     <a
-      class="p-2 text-dark text-decoration-none"
+    *ngIf="!authService.isAuthenticated()"
+      class="p-2 text-light text-decoration-none"
       [routerLink]="['/dashboard']"
       routerLinkActive="activeMenu"
       >Dashboard</a
     >
   </nav>
   <div>
-    <a class="btn btn-outline-primary mr-3" [routerLink]="['/auth']">Sign in</a>
-    <a class="btn btn-outline-primary" [routerLink]="['/reg']">Sign up</a>
+    <a *ngIf="authService.isAuthenticated()" class="btn btn-outline-primary" [routerLink]="['/auth']">Sign in</a>
+    <a *ngIf="authService.isAuthenticated()" class="btn btn-outline-warning" [routerLink]="['/reg']">Sign up</a>
+    <a *ngIf="!authService.isAuthenticated()" class="btn btn-outline-danger" (click)="logoutUser()">Logout</a>
   </div>
-</div>
+</header>

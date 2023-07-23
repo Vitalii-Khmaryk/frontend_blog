@@ -1,1 +1,137 @@
-<p>home works!</p>
+<div class="nav-scroller py-1 mb-2">
+  <nav class="nav d-flex justify-content-between">
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('')"
+      >All</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('World')"
+      >World</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Technology')"
+      >Technology</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Design')"
+      >Design</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Culture')"
+      >Culture</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Business')"
+      >Business</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Opinion')"
+      >Opinion</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Science')"
+      >Science</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Health')"
+      >Health</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Style')"
+      >Style</a
+    >
+    <a
+      class="p-2 text-muted text-decoration-none hoverText"
+      (click)="setCategory('Travel')"
+      >Travel</a
+    >
+  </nav>
+</div>
+
+<div class="row d-flex">
+  <div class="figure">
+    <img
+      class="photo"
+      src="https://www.la-palafitta.com/website-images/test/image-thumb__33__header-large/lapalafitta-03.jpeg"
+      alt=""
+    />
+    <div class="text col-md-6 px-0 p-5">
+      <h1 class="display-4 font-italic">Welcome</h1>
+      <p class="lead my-3">
+        Welcome to our blog dedicated to technology, travel and many other
+        exciting topics! Here you will find interesting articles that combine
+        the latest technological advances with the limitless world of travel.
+      </p>
+      <p class="lead mb-0">
+        <a *ngIf="authService.isAuthenticated()" [routerLink]="['/reg']" class="text-white font-weight-bold"
+          >Registration...</a
+        >
+      </p>
+    </div>
+  </div>
+<div *ngIf="loadingPosts" class="d-flex justify-content-center" >
+<app-loader></app-loader>
+</div>
+  <div
+    *ngFor="let post of postsArray | sorting : category"
+    class="col-md-4 cardPost"
+  >
+    <ng-container
+      *ngIf="
+        post.category === 'There are no posts in this category yet...'
+          ? true
+          : false
+      "
+    >
+      <div class="p-0 mb-4 box-shadow">
+        <quill-view [content]="post.photo"></quill-view>
+        <div class="card-body mb-3">
+          <div class="m-0 d-flex justify-content-between align-items-center">
+            <strong class="mb-2 text-primary">{{ post.category }}</strong>
+            <small class="text-muted">{{ post.date | date : "short" }}</small>
+          </div>
+          <h4 class="m-0">
+            <a class="text-dark text-decoration-none hoverText">{{
+              post.title
+            }}</a>
+          </h4>
+          <quill-view [content]="post.text | slice : 0 : 250"></quill-view>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container
+      *ngIf="
+        post.category === 'There are no posts in this category yet...'
+          ? false
+          : true
+      "
+    >
+      <div class="p-0 mb-4 box-shadow" [routerLink]="['post', post._id]">
+        <quill-view [content]="post.photo"></quill-view>
+        <div class="card-body mb-3">
+          <div class="m-0 d-flex justify-content-between align-items-center">
+            <strong class="mb-2 text-primary">{{ post.category }}</strong>
+            <small class="text-muted">{{ post.date | date : "short" }}</small>
+          </div>
+          <h4 class="m-0">
+            <a class="text-dark text-decoration-none hoverText">{{
+              post.title
+            }}</a>
+          </h4>
+          <quill-view [content]="post.text | slice : 0 : 250"></quill-view>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

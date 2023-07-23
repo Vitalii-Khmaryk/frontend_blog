@@ -1,0 +1,52 @@
+.figure {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  color: white;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.photo {
+  position: absolute;
+  width: 100%;
+  margin: -10% 0 0 0;
+}
+.text {
+  z-index: 10;
+  position: absolute;
+  margin: 20px;
+}
+.card-body {
+  margin: 10px;
+}
+.cardPost {
+  cursor: pointer;
+  border-radius: 7px;
+  border: 3px solid white;
+}
+
+.cardPost:hover {
+  animation: slideIn 2s forwards;
+}
+.hoverText{
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  transition: 0.4s all;
+}
+.hoverText:hover{
+  cursor: pointer;
+  border-bottom: 1px solid aqua;
+  border-top: 1px solid aqua;
+}
+@keyframes slideIn {
+  100% {
+    border: 3px solid aqua;
+  }
+}
+
+.tcenter{
+  width: 100%;
+  text-align: center;
+  background-color: yellow;
+}
